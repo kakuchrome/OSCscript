@@ -13,13 +13,14 @@ if __name__ == "__main__":
 
   client = udp_client.SimpleUDPClient(args.ip, args.port)
   
-dt_now =  datetime.datetime.now()
+#base time is set to 7am 0 min 0 sec , to be compare to now datetime
 base = datetime.time(7, 0, 0)
-now = dt_now.time()
 
 if __name__ == '__main__':
     while True:
         # when realtime is beyond 7am then set timer osc parameter to true
+        dt_now =  datetime.datetime.now()
+        now = dt_now.time()
         if base > now :
             client.send_message("/avatar/parameters/timer", 0)
             print("timer off ")
